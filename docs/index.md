@@ -2,7 +2,7 @@
 layout: full
 homepage: true
 disable_anchors: true
-description: Documentation for the GW-signal generator
+description: Documentation for SynthGrav
 ---
 
 <div class="row">
@@ -11,27 +11,30 @@ description: Documentation for the GW-signal generator
 ## Installation
 {:.mt-lg-0}
 
-### git
-   ```bash
-  git clone https://github.com/haakoan/NAME
-  ```
+### From GitHub
+Follow these steps to install SynthGrav:
 
-  ```python
-  import NAME
-  ```
+1. Clone the repository:
+    ```
+    git clone https://github.com/haakoan/SynthGrav
+    ```
+2. Navigate to the directory where SynthGrav is located and import it in Python:
+    ```python
+    import synthgrav
+    ```
 
-### pip
+### With pip
   ```bash
-  #To come 
+  #To come in the future
   ```
 
 ## Basic usage
 
 ```python
-import NAME
+import synthgrav
 
 #Set up signal
-s = NAME.Signal(time=t,modes=modes,
+s = synthgrav.Signal(time=t,modes=modes,
                 polarisation=polarisation) 
 
 #t, modes, and polarisation are user inputs
@@ -47,7 +50,7 @@ plt.plot(s.time,s.signal[0])
 ```
 
 ## Tutorial
-A description of how to use NAME can be found in the tutorial the notebook
+A description of how to use SynthGrav can be found in the tutorial the notebook
 named Getting_started.ipynb.
 </div>
 <div class="col-lg-6" markdown="1">
@@ -55,7 +58,7 @@ named Getting_started.ipynb.
 ## Documentation
 {:.mt-lg-0}
 ### Signal Class
-This section documents the main Signal class, which is the primary object that end-users will interact with.
+This section documents the main Signal class of SynthGrav, which is the primary object that end-users will interact with.
 [Main Signal Class]({{ site.baseurl }}{% link signal.md %})
 
 ### Mode Generation
