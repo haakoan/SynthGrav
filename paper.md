@@ -1,5 +1,5 @@
 ---
-title: 'Signal: Synthetic Gravitational-wave Signals for Core-collapse Supernovae'
+title: 'SyntGrav: Synthetic Gravitational-wave Signals for Core-collapse Supernovae'
 tags:
   - Python
   - astronomy
