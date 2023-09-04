@@ -35,14 +35,7 @@ For a detailed guide on how to generate signals and use the software, refer to t
 
 ## References
 
-- Andresen, 2016 [Link]
-- Torres-Forne, 2018 [Link]
-- Morozova, 2018 [Link]
-- Torres-Forne, 2019 [Link]
-- Sotani, 2021 [Link]
-
 ## License
-
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
