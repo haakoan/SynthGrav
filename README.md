@@ -1,3 +1,4 @@
+![SynthGrav Icon](https://path/to/your/icon.png)
 # SynthGrav: A Python Package for Core-Collapse Supernovae and Gravitational Wave Astronomy
 
 ## Overview
