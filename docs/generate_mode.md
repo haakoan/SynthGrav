@@ -29,8 +29,8 @@ The math behind the function can be described as follows:
    - If the polarization is 'linear', generate a time-domain waveform `h_t1` using the inverse Fourier transform of `h1_shaped`, and set `h_t2` to be an array of zeros with the same length as `h_t1`.
    - If the polarization is 'elliptical', then `h2_white` is related to `h1_white` in the frequency domain as `h2_white = 1.0j*h1_white*polarisation_value`.
 
-The output of the function is a tuple containing the time-domain waveforms `h_t1` and `h_t2`. The signals ends up in `Signal.signal[0]` and `Signal.signal[1]` from where the user
-can acess them.
+The output of the function is a tuple containing the time-domain waveforms `h_t1` and `h_t2`. The signal ends up in `Signal.signal[0]` and `Signal.signal[1]` from where the user
+can access them.
 
 
 ## `generate_mode(mode, *args, **kwargs)`
@@ -89,7 +89,7 @@ Generates random noise and scales it by the provided noise level.
 
 ## Power spectral density
 The following PSDs are defined for colouring the noise that makes up the pulses. 
-These are predefined, but the user can specify their own. Using the simple `guass_psd` is recommended for most use cases.
+These are predefined, but the user can specify their own. Using the simple `gauss_psd` is recommended for most use cases.
 
 ### `gauss_psd(f, central_frequency, **kwargs)`
 
