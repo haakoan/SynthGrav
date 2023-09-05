@@ -22,7 +22,7 @@ The predefined modes available in the `modes` sub-library are:
 - `gmode_default_func`
 
 gmode_default_func is a test function and the other modes are based on 
-Universal relations for gravitational-wave asteroseismology of proto-neutron stars, Alejandro Torres-Forné .et. al.
+Universal relations for gravitational-wave asteroseismology of proto-neutron stars, Alejandro Torres-Forné et. al.
 https://arxiv.org/abs/1902.10048
 
 Each predefined mode is implemented as a function that generates a gravitational wave signal based on the given time array and mode-specific parameters.
