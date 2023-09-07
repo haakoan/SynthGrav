@@ -129,7 +129,9 @@ class Signal:
         self.signal = np.zeros([2, len(self.time)])
         
         #Validate noise input
-        if(isinstance(noise_level,(int,float))):
+        if(isinstance(noise_level,(bool))):
+            raise ValueError("noise_level must be int or float")
+        elif(isinstance(noise_level,(int,float))):
             self.noise_level = noise_level
         else:
             raise ValueError("noise_level must be int or float")
