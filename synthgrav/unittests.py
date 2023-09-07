@@ -72,8 +72,8 @@ class TestSignalClass(unittest.TestCase):
         gws.generate_signal()
         hx, hp = gws.signal[0],gws.signal[1]
 
-        #When dealing with FFTs its always an issue to get the exact frequency, this test is
-        #somewhat sensetive to exactly how it is setup so be carefull with making changes.
+        #When dealing with FFTs it is always an issue to get the exact frequency. This test is
+        #somewhat sensetive to exactly how it is setup, so be careful with making changes.
         expected_peak_freq = 250.0
 
         # Calculate the power spectral density (PSD) of the generated signal
