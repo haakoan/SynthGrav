@@ -7,7 +7,7 @@ from scipy.stats import logistic, cauchy
 def gauss_psd(f,central_frequency,**kwargs):
     """
     Returns the gaussian spectral density centered
-    around central_frequency and with standard diviation sigma.
+    around central_frequency with standard deviation sigma.
 
     This function is used as a default weighting function.
     """
