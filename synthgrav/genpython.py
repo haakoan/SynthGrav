@@ -9,7 +9,7 @@ def gauss_psd(f,central_frequency,**kwargs):
     Returns the gaussian spectral density centered
     around central_frequency and with standard diviation sigma.
 
-    This function is used as a weighting function in the poise_psd function
+    This function is used as a default weighting function.
     """
     sigma = kwargs['sigma']
     return 1/(sigma * np.sqrt(2 * np.pi)) * np.exp( - (f-central_frequency)**2 / (2 * sigma**2))
