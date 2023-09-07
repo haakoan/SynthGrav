@@ -207,7 +207,7 @@ class Signal:
             for key in self.modes.keys():
                 self.pulse_duration[key] = pulse_duration
         else:
-            raise ValueError("Invalid pules duration, must be float or dict")
+            raise ValueError("Invalid pulse duration, must be float or dict")
 
           
 
