@@ -17,7 +17,7 @@ The tests implemented include:
 1. Input validation for main class
 2. Test of different mode generation fucntions
 3. Test for PSD functions
-4. Test input validation for puls_gen
+4. Test input validation for gen_pulse
 5. Test for input validation for generate_mode
 
 However, these tests do not cover all possible edge cases and scenarios. Therefore, users are strongly 
