@@ -32,6 +32,15 @@ Follow these steps to install SynthGrav:
 
 For a detailed guide on how to generate signals and use the software, refer to the Jupyter Notebook `Getting_started.ipynb` included in the repository.
 
+## Unit Tests
+
+We have implemented a suite of unit tests to ensure the reliability and robustness of SynthGrav. 
+These tests cover key functionalities and aim to catch any regressions or errors that could affect the package's performance. 
+Running the unit tests is highly recommended after making changes to the code. The tests can be found in the `unittest.py`.
+
+
+
+
 ## References
 
 ## License
