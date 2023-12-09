@@ -33,7 +33,7 @@ Follow these steps to install SynthGrav:
 For a detailed guide on how to generate signals and use the software, refer to the Jupyter Notebook `Getting_started.ipynb` included in the repository.
 
 ## Documentation
-Full documentation can be found at https://haakoan.github.io/SynthGWSG/
+Full documentation can be found at https://haakoan.github.io/GWSG/
 
 ## Unit Tests
 
