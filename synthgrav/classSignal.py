@@ -1,7 +1,7 @@
 import numpy as np
-from .genpython import generate_mode, add_noise,gauss_psd
-from datetime import datetime
+from .genpython import generate_mode, add_noise,gauss_psd,add_shaped_noise,cauchy_psd
 from .mode_list import *
+import datetime
 # import gensig
 
 
@@ -60,7 +60,10 @@ class Signal:
 
     def __init__(self, time, modes, mode_kwargs={}, mode_weight={}, polarisation={},
                  signal_weight=None, rng_seed=-1, noise_level=1.0,
-                 pulse_duration=0.05,psd=gauss_psd,psd_kwargs={'sigma':10}) -> None:
+                 pulse_duration=0.05,psd=gauss_psd,psd_kwargs={'sigma':10},
+                 shaped_noise_kwargs = {'central_frequency' :500, 'noise_level' : 0.1, 
+                     'signal_max' : 1.0,'polarisation' : 'unpolarised', 'polarisation_value': 0.0,
+                     'psd' : cauchy_psd,'psd_kwargs' : {'x0' : -100,'gamma' : 800}}) -> None:
         '''
         Initializes the Signal instance based on the input provided by the user.
 
@@ -113,6 +116,7 @@ class Signal:
         self.polarisation = {}
         self.psd = psd
         self.psd_kwargs = psd_kwargs
+        self.shaped_noise_kwargs = shaped_noise_kwargs
 
         #Validate time input
         if(isinstance(time,(list,tuple,np.ndarray))):
@@ -172,7 +176,7 @@ class Signal:
 
         #Setup RNG
         if(self.rng_seed == -1):
-            self.rng_seed = int(datetime.now().timestamp())
+            self.rng_seed = int(datetime.datetime.now().timestamp())
             self.rng = np.random.default_rng(self.rng_seed)
         else:
             self.rng = np.random.default_rng(self.rng_seed)
@@ -238,10 +242,13 @@ class Signal:
             self.modes_signal[key] = np.array(self.modes_signal[key])*self.mode_weight[key]
         self.noise = add_noise(len(self.time), self.rng,
                                noise_level=self.noise_level)
+        
+        self.shaped_noise = add_shaped_noise(len(self.time),self.dt,self.rng,
+                                             **self.shaped_noise_kwargs)
         #Construct signal as a weighted sum of modes
         for key in self.modes_signal.keys():
             self.signal += np.array(self.modes_signal[key])
-        self.signal += self.noise
+        self.signal += self.noise + self.shaped_noise
         self.signal = self.signal*self.signal_weight
         self.signal = self.signal/np.abs(self.signal).max()
 
@@ -297,8 +304,8 @@ class Signal:
             out_data = np.column_stack((out_data, self.polarisation[key][1]))
             polarisation_names.append(f'pol_{key} ({self.polarisation[key][0]})')
         out_data = np.column_stack((out_data, self.noise[0,:],self.noise[1,:]))
-
-        column_names = ["time", "h1", "h2"] + list(mode_names) + list(polarisation_names) + ['noise h1','noise h2']
+        out_data = np.column_stack((out_data, self.shaped_noise[0,:],self.shaped_noise[1,:]))
+        column_names = ["time", "h1", "h2"] + list(mode_names) + list(polarisation_names) + ['noise h1','noise h2','shaped noise h1','shaped noise h2']
         header = f'# Generated with seed {self.rng_seed}\n #'
         for col in column_names:
             header+=f'\t{col}'
