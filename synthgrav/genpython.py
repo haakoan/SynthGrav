@@ -73,6 +73,34 @@ def cauchy_psd(f, central_frequency, **kwargs):
     return pdf / np.sum(pdf)
 
 
+def colored_noise_psd(f, **kwargs):
+    """
+    Colored Noise Power Spectral Density function.
+
+    This function generates a PSD based on the exponent of the frequency array (f**beta). 
+    It can represent different types of noise depending on the value of beta.
+
+    White Noise: beta = 0
+    Blue Noise: beta = 0.5
+    Violet Noise: beta = 1
+    Brownian Noise: beta = -2
+    Pink Noise: beta = -0.5
+
+    Args:
+        f (array): Frequency array.
+        kwargs: Additional arguments, should include 'beta' (the exponent applied to the frequency array).
+
+    Returns:
+        array: PSD values based on the specified exponent of the frequency.
+    """
+    beta = kwargs.get('beta', 1)  # Default value of beta is 1
+
+    # Handling division by zero when beta < 0
+    if beta < 0:
+        # Avoid division by zero
+        f = np.where(f == 0, float('inf'), f)
+    
+    return f**beta
 
 
 
@@ -377,3 +405,35 @@ def add_noise(signal_length, rng_generator, noise_level=0.1, signal_max=1.0):
     noisehp = signal_max * noise_level * (-2 * rng_generator.random(signal_length) + 1)
     return np.array([noisehx, noisehp])
 
+def add_shaped_noise(signal_length,signal_dt, rng_generator,psd=cauchy_psd,
+                     psd_kwargs={'x0' : -100,'gamma' : 800},central_frequency=500, noise_level=0.1, 
+                     signal_max=1.0,polarisation='unpolarised', polarisation_value=0.0):
+    """
+    Generates shaped noise, based on specified PSD.
+
+    Parameters:
+    -----------
+        signal_length (int): Length of the signal.
+        signal_dt (float): Time interval (delta t) of the signal.
+        rng_generator: Random number generator object.
+        psd (function): Function that generates the Power Spectral Density. 
+                        Default is 'colored_noise_psd'.
+        psd_kwargs (dict): Keyword arguments for the PSD function. 
+                           Defaults to {'beta': 0.5}.
+        central_frequency (float): Central frequency for the PSD. Default is 100 Hz.
+        noise_level (float): Overall level of the noise to be added. Default is 0.1.
+        signal_max (float): Maximum value of the signal. Default is 1.0.
+        polarisation (str): Polarisation type of the noise ('unpolarised' or other types). 
+                            Default is 'unpolarised'.
+        polarisation_value (float): Value associated with the polarisation. Default is 0.0.
+    -----------
+    Returns:
+        ndarray: An array containing two channels (h1 and h2) of noise.
+
+    """
+
+
+    h1,h2 = gen_pulse(signal_length, signal_dt, psd, central_frequency, rng_generator,
+              polarisation, polarisation_value,**psd_kwargs)
+    
+    return signal_max * noise_level*np.array([h1,h2])
