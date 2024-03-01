@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from scipy.fft import fft, fftfreq
 from genpython import *
-from datetime import datetime
+import datetime
 from mode_list import *
 from classSignal import *
 from mode_list import *
