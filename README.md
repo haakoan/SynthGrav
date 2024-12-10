@@ -1,5 +1,5 @@
 
-# SynthGrav: A Python Package for Core-Collapse Supernovae and Gravitational Wave Astronomy
+# SynthGrav: A Python Package for Synthetic Gravitational-Wave Signal Generation
 
 ## Overview
 SynthGrav is designed to facilitate machine learning applications, parameter estimation studies, and other data analysis tasks in the field of Core-Collapse Supernovae (CCSNe) and Gravitational Wave (GW) astronomy. 
